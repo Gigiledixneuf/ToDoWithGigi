@@ -73,10 +73,18 @@ $noms = $_SESSION['noms'];
         </ul>
               <div class="times">
                 <p>
-                    <?php 
+                    <!-- <?php 
                     echo date('d - m - Y');
                     echo " - ";
                     echo date('H:i'); 
+                    ?> -->
+
+                    <?php
+                    $jour = array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+                    $date = date("d/m/Y");
+                    $heure = date("H:i");
+                    $jour_semaine = $jour[date("w")];
+                    echo "$jour_semaine, $date $heure";
                     ?>
                 </p>
               </div>     
