@@ -204,7 +204,7 @@ $noms = $_SESSION['noms'];
           <h2>Done - 
               <!-- Comptage tache effectuée -->
              <?php 
-              $requette = mysqli_query($connexion, "SELECT count(id) as nbr FROM add_ask WHERE etat = 1 AND username = '$username' ORDER BY id DESC");
+              $requette = mysqli_query($connexion, "SELECT count(id) as nbr FROM add_ask WHERE etat = 1 AND username = '$username'");
               while ($garde=mysqli_fetch_assoc($requette)) {
                  echo $garde['nbr'];
              } ?>
