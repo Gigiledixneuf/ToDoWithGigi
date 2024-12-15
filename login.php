@@ -35,7 +35,7 @@
               }
               } else {
                   echo '<div id="errorMessage" style="color: red; font-weight: bold; font-size:14px; margint: 15px;">';
-                  echo "Cet utilisateur n'existe pas";
+                  echo "This user does not exist";
                   echo "</div>";
               }
           }
