@@ -69,14 +69,22 @@ $noms = $_SESSION['noms'];
             </ul>
           </li>
               <a href="https://github.com/Gigiledixneuf" target="_blank"><img src="img/icons/icons8-github-logo-94.png"></a>
-              <a href="https://www.linkedin.com/in/gigi-kubaluka-686484337/" target="_blank"><img src="img/icons/icons8-linkedin-logo-94.png"></a>
+              <a href="https://www.linkedin.com/in/guerchom-kubaluka" target="_blank"><img src="img/icons/icons8-linkedin-logo-94.png"></a>
         </ul>
               <div class="times">
                 <p>
-                    <?php 
+                    <!-- <?php 
                     echo date('d - m - Y');
                     echo " - ";
                     echo date('H:i'); 
+                    ?> -->
+
+                    <?php
+                    $jour = array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+                    $date = date("d/m/Y");
+                    $heure = date("H:i");
+                    $jour_semaine = $jour[date("w")];
+                    echo "$jour_semaine, $date $heure";
                     ?>
                 </p>
               </div>     
