@@ -133,15 +133,42 @@ $noms = $_SESSION['noms'];
       <div class="tasks-container">
         <div class="tasks-section">
           <!-- Comptage de tache à faire -->
-          <h2>Task(s) to do - 
+          <div style="display: flex; align-items: center;  gap: 10px;">
+            <span>Task(s) to do - 
               <?php 
               $requette = mysqli_query($connexion, "SELECT count(id) as nbr FROM add_ask WHERE etat = 0 AND username = '$username'");
               while ($garde=mysqli_fetch_assoc($requette)) {
                  echo $garde['nbr'];
                } ?>
                <!-- Fin -->
-          </h2>
-          <ul class="task-list">
+          </span>
+          <?php 
+             if (isset($_GET['deleteAll'])) {
+              $deleteAll = $_GET['deleteAll'];
+              $reqSuppAll = mysqli_query($connexion, "DELETE FROM add_ask WHERE username = '$username' ");
+              //Suppresion de toutes les taches. 
+              echo "<script>
+              Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'All tasksdeleted. 😃',
+              showConfirmButton: false,
+              timer: 3500
+              });
+              setInterval(function () {
+              window.location.replace('app.php');
+              }, 1000);
+              </script>";
+              }
+
+           ?>
+          <a href="app.php?deleteAll=1" style="background-color: #7f5af0;border: none;color: white;padding: 10px 15px;border-radius: 8px;cursor: pointer;text-decoration: none;">
+            Clear All
+          </a>
+
+          </div>
+          
+          <ul class="task-list" style="margin-top: 10px;">
             <!-- Script valider, supprimer et affichage -->
             <?php 
             // Validation
@@ -209,7 +236,7 @@ $noms = $_SESSION['noms'];
 
         <div class="tasks-section">
 
-          <h2>Done - 
+          <span>Task(s) Done - 
               <!-- Comptage tache effectuée -->
              <?php 
               $requette = mysqli_query($connexion, "SELECT count(id) as nbr FROM add_ask WHERE etat = 1 AND username = '$username'");
@@ -217,9 +244,9 @@ $noms = $_SESSION['noms'];
                  echo $garde['nbr'];
              } ?>
              <!-- Fin -->
-          </h2>
+          </span>
 
-          <ul class="task-list">
+          <ul class="task-list" style="margin-top: 10px;">
             <!-- Affichage, remote et suppression tache(s) -->
             <?php 
             // Remote ou remettre la tacje à jour
@@ -304,6 +331,7 @@ $noms = $_SESSION['noms'];
       </div>
     </div>
   </div>
+  
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
